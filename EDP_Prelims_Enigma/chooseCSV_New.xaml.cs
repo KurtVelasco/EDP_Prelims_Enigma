@@ -3,16 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace EDP_Prelims_Enigma
 {
@@ -27,10 +20,11 @@ namespace EDP_Prelims_Enigma
         private string[] ringNumbers;
         private char[][] ringsChar = { };
         private int[][] ringsInt = { };
+        private int[] controlInt = { }; 
         private ComboBox[] selectedIndex = new ComboBox[3];
+        private int[] rotorInformation = new int[2]; // First is the amount of rotors (not counting control) // Second is char amount
         private string[] errorMessage = {"CSV File Cannot Be Accessed or Another Program is Currently Using it", "Rotors have Mismatched Lengths",
             "Rotors have Duplicate Characters", "Rotors have Improper Format","Duplicate keys where found in a rotor", "CSV File does not contain Control/Rotors","CSV File Is not Using a Proper Format" };
-        private Dictionary<int, int> checkDupe = new Dictionary<int, int>();
         public chooseCSV_New()
         {
             InitializeComponent();
@@ -49,6 +43,11 @@ namespace EDP_Prelims_Enigma
             if ((bool)ofd.ShowDialog())
             {
                 csvFilePath = ofd.FileName;
+                label_filepath.Text = csvFilePath.ToString();
+            }
+            else
+            {
+                return;
             }
             button_browse.IsEnabled = false;
             textbox_errorMessage.Text = "No Error Messages";
@@ -58,9 +57,45 @@ namespace EDP_Prelims_Enigma
         {
             textbox_errorMessage.Text = error;
         }
-        private void checkFirst2Rows(string[] colummInfo, string[] headers)
+        private bool checkFirst2Rows(string[] colummInfo, string[] headers)
         {
+            bool flag = true;
+            if(colummInfo.Length != 2)
+            {
+                displayErrorMessages("The Rotor (Count) Information is Invalid or missing");
+                flag = false;
+            }
+            else
+            {
+                for (int b = 0; b < colummInfo.Length; b++)
+                {
+                    if (int.TryParse(colummInfo[b], out int parsedValue))
+                    {
+                        rotorInformation[b] = parsedValue;
+                    }
+                    else
+                    {
+                        displayErrorMessages("The Rotor (Count) Information is Invalid or missing");
+                        return false;
+                    }
 
+                }
+                for (int a = 0; a < headers.Length; a++)
+                {
+                    if (int.TryParse(headers[a], out int checkParse))
+                    {
+                        displayErrorMessages("The Rotor Header is Missing");
+                        return false;
+                    }
+                    else
+                    {
+
+                    }
+                }
+
+            }
+            return flag;
+                
         }
         private void convertAscii()
         {
@@ -88,7 +123,28 @@ namespace EDP_Prelims_Enigma
                 cmb_ring3.Items.Add(i);
             }
         }
+        private void getControlInt(int[][] intArray)
+        {
+            controlInt = new int[intArray.Length];
+            for(int i = 0;i < intArray.Length; i++)
+            {
+                controlInt[i] = intArray[i][0];
+            }
+        }
+        private void checkRotorswithControl()
+        {
+            for (int a = 0; a < ringsInt[0].Length; a++)
+            {
+                for(int b = 0; b < ringsInt.Length; b++) 
+                {
+                    int asciiNumber = ringsInt[b][a];
+                    if (!controlInt.Contains(asciiNumber))
+                    {
 
+                    }
+                }
+            }
+        }
         private void readFile()
         {
             try
@@ -103,6 +159,10 @@ namespace EDP_Prelims_Enigma
                     }
                     columnNames = csvData[1].Split(',');
                     ringNumbers = csvData[0].Split(',');
+                    if(!checkFirst2Rows(ringNumbers, columnNames))
+                    {
+                        return;
+                    }
                     label_ringColumnCount.Content = "Ring Columns: " + ringNumbers[0].ToString();
                     label_ringCharCount.Content = "Character Count: " + ringNumbers[1].ToString();
                     for (int a = 0; a < 2; a++)
@@ -110,11 +170,11 @@ namespace EDP_Prelims_Enigma
                         csvData.RemoveAt(0);
                     }
                     ringsInt = new int[csvData.Count][];
-                    for (int a = 0; a < csvData.Count; a++)
+                    for (int a = 0; a < csvData.Count; a++) //rotorInformation[1] to use
                     {
                         ringsInt[a] = new int[columnNames.Length];
                         string[] elements = csvData[a].Split(',');
-                        for (int b = 0; b < columnNames.Length; b++)
+                        for (int b = 0; b < columnNames.Length; b++) //rotorInformation[0] to use
                         {
                             if (int.TryParse(elements[b], out int parsedValue))
                             {
@@ -122,14 +182,14 @@ namespace EDP_Prelims_Enigma
                             }
                             else
                             {
-                                displayErrorMessages(errorMessage[3]);
+                                displayErrorMessages("A Rotor has a invalid Ascii Number or a Empty string value with the csv/txt" );
                                 return;
                             }
                         }
                     }
                     if (checkDuplicateChar(ringsInt))
                     {
-                        displayErrorMessages(errorMessage[4]);
+                        displayErrorMessages("Duplicate keys where found in a rotor");
                         return;
                     }
                 }
@@ -140,12 +200,12 @@ namespace EDP_Prelims_Enigma
             {
                 if (e is IndexOutOfRangeException)
                 {
-                    displayErrorMessages(errorMessage[1]);
+                    displayErrorMessages("Rotors have Mismatched Lengths");
                 }
                 else if (e is FieldAccessException)
                 {
                     //MessageBox.Show(errorMessage[0], "CSV file cannot be access", MessageBoxButton.OK, MessageBoxImage.Error);
-                    displayErrorMessages(errorMessage[0]);
+                    displayErrorMessages("CSV File Cannot Be Accessed or Another Program is Currently Using it");
                 }
                 else
                 {
@@ -153,6 +213,8 @@ namespace EDP_Prelims_Enigma
                 }
                 return;
             }
+            getControlInt(ringsInt);
+            checkRotorswithControl();
 
         }
 

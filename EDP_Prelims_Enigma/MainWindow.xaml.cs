@@ -1555,7 +1555,7 @@ namespace EDP_Prelims_Enigma
             {
                 if (int.TryParse(textboxValues[i].ToString(), out ringValue))
                 {
-                    if (ringValue >= 0 && ringValue <= control.Length)
+                    if (ringValue >= 0 && ringValue < control.Length)
                     {
                         ringSettings[i] = ringValue;
                         isRotorActive = true;
@@ -1578,6 +1578,9 @@ namespace EDP_Prelims_Enigma
                 activateRotor = !activateRotor;
                 button_activateRotor.Content = "Rotor Active";
                 button_activateRotor.IsEnabled = false;
+                textbox_ring1.IsEnabled = false;
+                textbox_ring2.IsEnabled = false;
+                textbox_ring3.IsEnabled = false;
                 setSettings();
             }
         }

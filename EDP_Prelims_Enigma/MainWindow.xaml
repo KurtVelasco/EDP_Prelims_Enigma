@@ -8,8 +8,8 @@
         Title="MainWindow"  Height="898" Width="1483" KeyDown="Window_KeyDown">
     <Grid x:Name="keyBoard">
         <TextBox x:Name="label_unecrypted" IsReadOnly="True" BorderThickness="1" BorderBrush="Black"  FontFamily="Courier New" Text="" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top" Width="580" Height="80"/>
-        <TextBox x:Name="label_encrypted" IsReadOnly="True" FontFamily="Courier New" Text=""  BorderBrush="Black" HorizontalAlignment="Left" Margin="110,100,0,0" VerticalAlignment="Top" Width="580" Height="80"/>
-        <TextBox x:Name="label_mirror" IsReadOnly="True" FontFamily="Courier New" Text=""  BorderBrush="Black" HorizontalAlignment="Left" Margin="110,190,0,0" VerticalAlignment="Top" Width="580" Height="80"/>
+        <TextBox x:Name="label_encrypted" IsReadOnly="True" FontFamily="Courier New" Text=""  BorderBrush="Black" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="110,100,0,0" VerticalAlignment="Top" Width="580" Height="80"/>
+        <TextBox x:Name="label_mirror" IsReadOnly="True" FontFamily="Courier New" Text=""  BorderBrush="Black" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="110,190,0,0" VerticalAlignment="Top" Width="580" Height="80"/>
         <Label x:Name="label_uncrypted_label"  Content="Unencrypted" HorizontalAlignment="Left" Margin="18,10,0,0" VerticalAlignment="Top" Width="92"/>
         <Label Content="Encrypted" HorizontalAlignment="Left" Margin="21,100,0,0" VerticalAlignment="Top" Width="77"/>
         <Label x:Name="label_mirrored_label" Content="Encrypted Mirrored" HorizontalAlignment="Left" Margin="5,188,0,0" VerticalAlignment="Top" Width="100"/>
@@ -21,7 +21,7 @@
         <Label x:Name="label_rotor2"  FontFamily="Courier New" HorizontalAlignment="Left" Margin="160,749,0,0" VerticalAlignment="Top" Width="622" Height="26"/>
         <Label x:Name="label_rotor3" FontFamily="Courier New" HorizontalAlignment="Left" Margin="160,775,0,0" VerticalAlignment="Top" Width="622" Height="26"/>
         <Label x:Name="label_control" Content=""  HorizontalAlignment="Left" Margin="160,694,0,0" VerticalAlignment="Top" Width="622"/>
-        <Button x:Name="button_activateRotor" Content="Activate The Motors, Kronk" Margin="34,302,0,0" RenderTransformOrigin="0.838,0.646" Click="button_activateRotor_Click" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="160"/>
+        <Button x:Name="button_activateRotor" Content="Activate The Rotors" Margin="34,302,0,0" RenderTransformOrigin="0.838,0.646" Click="button_activateRotor_Click" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="160"/>
         <TextBox x:Name="textbox_ring1" Text="0" HorizontalAlignment="Left" Margin="278,302,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="91" Height="26"/>
         <Label Content="RING 3 (H)" HorizontalAlignment="Left" Margin="209,302,0,0" VerticalAlignment="Top" Width="69"/>
         <Label Content="RING 2 (M)" HorizontalAlignment="Left" Margin="369,302,0,0" VerticalAlignment="Top" Width="69"/>
