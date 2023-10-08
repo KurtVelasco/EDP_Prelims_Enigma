@@ -1,0 +1,9 @@
+﻿<Application x:Class="EDP_Prelims_Enigma.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:EDP_Prelims_Enigma"
+             StartupUri="chooseCSV_New.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

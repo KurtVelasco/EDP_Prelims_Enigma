@@ -1,0 +1,31 @@
+﻿<Window x:Class="EDP_Prelims_Enigma.chooseCSV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EDP_Prelims_Enigma"
+        mc:Ignorable="d"
+        Title="chooseCSV" Height="575" Width="676">
+    <Grid>
+        <Button x:Name="button_browse" Content="Browse" Margin="20,47,0,0" Click="button_browse_Click" HorizontalAlignment="Left" Width="135" Height="42" VerticalAlignment="Top"/>
+        <Label x:Name="label_filepath" BorderThickness="0" BorderBrush="Black" Margin="160,47,0,0" Content="" FontSize="20
+        " Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="471"/>
+        <Label Content="SELECT YOUR CSV FILE" FontSize="20" HorizontalAlignment="Left" Margin="13,10,0,0" VerticalAlignment="Top" Width="254"/>
+        <ComboBox x:Name="cmb_ring1" HorizontalAlignment="Left" Margin="160,160,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cmb_ring1_SelectionChanged"/>
+        <ComboBox x:Name="cmb_ring2" HorizontalAlignment="Left" Margin="330,160,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cmb_ring1_SelectionChanged" />
+        <ComboBox x:Name="cmb_ring3" HorizontalAlignment="Left" Margin="511,160,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cmb_ring1_SelectionChanged" />
+        <ListBox x:Name="listbox_control" HorizontalAlignment="Left" Height="329" Margin="20,160,0,0" VerticalAlignment="Top" Width="120" d:ItemsSource="{d:SampleData ItemCount=5}" RenderTransformOrigin="-0.507,0.474"/>
+        <ListBox x:Name="listbox_rotor1" HorizontalAlignment="Left" Height="301" Margin="160,188,0,0" VerticalAlignment="Top" Width="120" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <ListBox x:Name="listbox_rotor2" HorizontalAlignment="Left" Height="301" Margin="330,188,0,0" VerticalAlignment="Top" Width="120" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <ListBox x:Name="listbox_rotor3" HorizontalAlignment="Left" Height="301" Margin="511,188,0,0" VerticalAlignment="Top" Width="120" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Button x:Name="button_confirm" Content="Confirm Rotor Codes" Background="LightGreen" HorizontalAlignment="Left" Height="25" Margin="160,502,0,0" VerticalAlignment="Top" Width="471" IsEnabled="False" Click="Confirm_Click"/>
+        <Label Content="RING 1" HorizontalAlignment="Left" Margin="160,129,0,0" VerticalAlignment="Top"/>
+        <Label Content="RING 2" HorizontalAlignment="Left" Margin="330,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.027,0.579"/>
+        <Label Content="RING 3" HorizontalAlignment="Left" Margin="511,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.027,0.579"/>
+        <Label Content="CONTROL" HorizontalAlignment="Left" Margin="20,129,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button_default" Content="Use Sample Rotors" Background="LightPink" HorizontalAlignment="Left" Height="25" Margin="20,502,0,0" VerticalAlignment="Top" Width="120" IsEnabled="True" Click="Default_Click"/>
+        <Label x:Name="label_ringColumnCount" Content="Ring Columns: " HorizontalAlignment="Left" Margin="20,98,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_ringCharCount" Content="Character Counts: " HorizontalAlignment="Left" Margin="160,98,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

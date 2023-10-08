@@ -1,0 +1,26 @@
+﻿<Window x:Class="EDP_Prelims_Enigma.chooseCSV_New"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EDP_Prelims_Enigma"
+        mc:Ignorable="d"
+        Title="chooseCSV_New" Height="377" Width="474">
+    <Grid>
+        <Button x:Name="button_browse" Content="Browse" Margin="28,26,0,0" Click="button_browse_Click" HorizontalAlignment="Left" Width="86" Height="23" VerticalAlignment="Top"/>
+
+        <ComboBox x:Name="cmb_ring1" HorizontalAlignment="Left" Margin="25,241,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cmb_ring_SelectionChanged" />
+        <ComboBox x:Name="cmb_ring2" HorizontalAlignment="Left" Margin="160,241,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cmb_ring_SelectionChanged" />
+        <ComboBox x:Name="cmb_ring3" HorizontalAlignment="Left" Margin="304,241,0,0" VerticalAlignment="Top" Width="120"  SelectionChanged="cmb_ring_SelectionChanged"/>
+        <Button x:Name="button_confirm" Content="Confirm Rotor Codes" Background="LightGreen" HorizontalAlignment="Left" Height="25" Margin="160,272,0,0" VerticalAlignment="Top" Width="264" IsEnabled="False" Click="Confirm_Click"/>
+        <Label Content="RING 1" HorizontalAlignment="Left" Margin="98,215,0,0" VerticalAlignment="Top"/>
+        <Label Content="RING 2" HorizontalAlignment="Left" Margin="233,215,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.027,0.579"/>
+        <Label Content="RING 3" HorizontalAlignment="Left" Margin="376,215,0,0" RenderTransformOrigin="4.027,0.579" Height="26" VerticalAlignment="Top"/>
+        <Button x:Name="button_default" Content="Use Sample Rotors" Background="LightPink" HorizontalAlignment="Left" Height="25" Margin="25,272,0,0" VerticalAlignment="Top" Width="120" IsEnabled="True" Click="Default_Click"/>
+        <Label x:Name="label_ringColumnCount" Content="Ring Columns: " HorizontalAlignment="Left" Margin="25,302,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_ringCharCount" Content="Character Counts: " HorizontalAlignment="Left" Margin="160,302,0,0" VerticalAlignment="Top"/>
+        <Label Content="Error Messages" HorizontalAlignment="Left" Margin="25,54,0,0" VerticalAlignment="Top" Width="189"/>
+        <TextBox x:Name="textbox_errorMessage" HorizontalAlignment="Left" Margin="28,80,0,0" TextWrapping="Wrap" Text="Currently no errors" VerticalAlignment="Top" Width="396" Height="130"/>
+        <Button x:Name="button_reset" Content="Choose another CSV" Margin="288,26,0,0"  HorizontalAlignment="Left" Width="135" Height="23" VerticalAlignment="Top" Click="button_reset_Click"/>
+    </Grid>
+</Window>
