@@ -24,13 +24,13 @@ namespace EDP_Prelims_Enigma
         private List<char> unshift_symbols = new List<char>() { '-', '=', '[', ']', '\\', ';', '\'', ',', '.', '/' };
         private List<char> shift_symbols = new List<char>() { '_', '+', '{', '}', '|', ':', '"', '<', '>', '?' };
         private List<string> commandButtons = new List<string>() { "Tab", "Shift", "Return", "Back", "Shift Lock", "Space bar" };
-        private List<char> lightModules = new List<char>()
+        List<string> lightModules = new List<string>()
         {
-            '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')',
-            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-            'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-            'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '-', '_', '=', '+', '[', ']', '{', '}',
-            '|', '\\', ':', ';', '\'', '"', ',', '<', '.', '>', '/', '?', ' '
+            "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")",
+            "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
+            "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+            "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "-", "_", "=", "+", "[", "]", "{", "}",
+            "|", "\\", ":", ";", "'", "\"", ",", "<", ".", ">", "/", "?", "Space", "Tab", "BackSpace" 
         };
         private Rectangle[] rectanglesArray = new Rectangle[52];
         private Label[] labelArray_keyboard = new Label[52];
@@ -44,7 +44,7 @@ namespace EDP_Prelims_Enigma
         private bool keyboardToggle = false;
         #endregion
 
-        #region THINGS
+        #region KEYBOARD
         Rectangle rectangle_1 = new Rectangle();
         Rectangle rectangle_2 = new Rectangle();
         Rectangle rectangle_3 = new Rectangle();
@@ -374,10 +374,12 @@ namespace EDP_Prelims_Enigma
         private string currentEncrypted = "";
         private string currentMirror = "";
 
+        //Default Rotors
         private string control = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private string originalRotor_1 = "DMTWSILRUYQNKFEJCAZBPGXOHV";
         private string originalRotor_2 = "HQZGPJTMOBLNCIFDYAWVEUSRKX";
         private string originalRotor_3 = "UQNTLSZFMREHDPXKIBVYGJCWOA";
+
         private string[] rotors = new string[3];
         private int[] rotorIncrements = new int[3];
         private int[] ringSettings = new int[3];
@@ -398,7 +400,12 @@ namespace EDP_Prelims_Enigma
             textbox_ring1.Text = 0 + "-" + ((int)control.Length - 1);
             textbox_ring2.Text = 0 + "-" + ((int)control.Length - 1);
             textbox_ring3.Text = 0 + "-" + ((int)control.Length - 1);
+            slider_hour.Maximum = control.Length - 1;
+            slider_min.Maximum = control.Length - 1;
+            slider_second.Maximum = control.Length - 1;
         }
+
+        //Setting UP
         private void keyboardArray()
         {
             #region KEYBOADY
@@ -628,7 +635,6 @@ namespace EDP_Prelims_Enigma
             elipseArray[93] = ellipse_questionMark;
             elipseArray[94] = ellipse_spaceBar;
             #endregion
-
             #region LIGHTBOARD
             labelArray_LightBoard[0] = label_lm_1;
             labelArray_LightBoard[1] = label_lm_2;
@@ -728,6 +734,29 @@ namespace EDP_Prelims_Enigma
             #endregion
 
         }
+        private void setDefaultEnigma()
+        {
+            rotors[0] = originalRotor_1.ToString(); rotors[1] = originalRotor_2.ToString(); rotors[2] = originalRotor_3.ToString();
+            rotorLabels[0] = label_rotor1; rotorLabels[1] = label_rotor2; rotorLabels[2] = label_rotor3;
+            foreach (char a in control)
+            {
+                label_control.Content += a + "\t";
+            }
+            foreach (char a in rotors[0])
+            {
+                label_rotor1.Content += a + "\t";
+            }
+            foreach (char a in rotors[1])
+            {
+                label_rotor2.Content += a + "\t";
+            }
+            foreach (char a in rotors[2])
+            {
+                label_rotor3.Content += a + "\t";
+            }
+        }
+
+        //U.I Elements
         private void generateRectangles()
         {
             int numberArrays = 0;
@@ -855,7 +884,7 @@ namespace EDP_Prelims_Enigma
                     elipseArray[numberArrays].HorizontalAlignment = HorizontalAlignment.Left;
                     elipseArray[numberArrays].Stroke = Brushes.Black;
                     elipseArray[numberArrays].Name = "ellipse" + numbers[i];
-                    elipseArray[numberArrays].Margin = new Thickness(850 + (i * 55), 50 + (rownumber * 55), 0, 0);
+                    elipseArray[numberArrays].Margin = new Thickness(850 + (i * 55), 10 + (rownumber * 70), 0, 0);
                     keyBoard.Children.Add(elipseArray[numberArrays]);
 
                     labelArray_LightBoard[numberArrays].Width = widthMeme;
@@ -866,7 +895,7 @@ namespace EDP_Prelims_Enigma
                     labelArray_LightBoard[numberArrays].HorizontalContentAlignment = HorizontalAlignment.Center;
                     labelArray_LightBoard[numberArrays].Content = lightModules[numberArrays];
                     labelArray_LightBoard[numberArrays].Name = labelArray_LightBoard[numberArrays].Name.ToString();
-                    labelArray_LightBoard[numberArrays].Margin = new Thickness(850 + (i * 55), 50 + (rownumber * 55), 0, 0);
+                    labelArray_LightBoard[numberArrays].Margin = new Thickness(850 + (i * 55), 10 + (rownumber * 70), 0, 0);
                     keyBoard.Children.Add(labelArray_LightBoard[numberArrays]);
                     numberArrays++;
                 }
@@ -874,13 +903,32 @@ namespace EDP_Prelims_Enigma
             }
 
         }
+        private void getEncryptionData()
+        {
+            control = "";
+            originalRotor_1 = "";
+            originalRotor_2 = "";
+            originalRotor_3 = "";
+            char[][] dataGet = universalData.entryptionArray;
+            for (int i = 0; i < dataGet.Length; i++)
+            {
+                control += dataGet[i][0];
+                originalRotor_1 += dataGet[i][1];
+                originalRotor_2 += dataGet[i][2];
+                originalRotor_3 += dataGet[i][3];
+            }
+        }
+
+        //Keyboard Functions
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (Keyboard.FocusedElement is TextBox || keyboardToggle == false)
             {
                 return;
             }
-            lightButton(e.Key);
+
+            lightKeyboardButton(e.Key);
+
             switch (e.Key)
             {
                 case Key.Capital:
@@ -909,6 +957,10 @@ namespace EDP_Prelims_Enigma
                     break;
                 case Key.Back:
                     backSpace();
+                    foreach (Ellipse lightButton in elipseArray)
+                    {
+                        lightButton.Fill = Brushes.Transparent;
+                    }
                     if (activateRotor == true)
                     {
                         rotateRotorBackwards();
@@ -919,10 +971,10 @@ namespace EDP_Prelims_Enigma
                     if (shiftDown)
                     {
                         lowerCaps();
+                        shiftDown = false;
                     }
                     if (control.Contains(keyChar))
                     {
-
                         currentEncrypted += Encrypt(keyChar);
                         currentSentence += keyChar;
                         if (activateRotor == true)
@@ -936,7 +988,7 @@ namespace EDP_Prelims_Enigma
             label_unecrypted.Text = currentSentence;
 
         }
-        private void lightButton(Key e)
+        private void lightKeyboardButton(Key e)
         {
             int index = 0;
             foreach (var rectangle in rectanglesArray)
@@ -1110,15 +1162,22 @@ namespace EDP_Prelims_Enigma
                 rectanglesArray[index].Fill = Brushes.Yellow;
             }
         }
-        private void lightPanel(char nonMirrored, char Mirrored)
+        private void lightPanel(string nonMirrored, string Mirrored)
         {
             foreach (Ellipse lightButton in elipseArray)
             {
                 lightButton.Fill = Brushes.Transparent;
             }
+            if (Mirrored == " ")
+            {
+                Mirrored = "Space";
+            }
+            if (nonMirrored == " ")
+            {
+                nonMirrored = "Space";
+            }
             int indexNon = lightModules.IndexOf(nonMirrored);
             int indexMirrored = lightModules.IndexOf(Mirrored);
-
             if (indexNon >= 0 && indexNon < elipseArray.Length)
             {
                 elipseArray[indexNon].Fill = Brushes.LightBlue;
@@ -1359,21 +1418,6 @@ namespace EDP_Prelims_Enigma
         }
 
         //Mostly Enigma Logic
-        private void getEncryptionData()
-        {
-            control = "";
-            originalRotor_1 = "";
-            originalRotor_2 = "";
-            originalRotor_3 = "";
-            char[][] dataGet = universalData.entryptionArray;
-            for (int i = 0; i < dataGet.Length; i++)
-            {
-                control += dataGet[i][0];
-                originalRotor_1 += dataGet[i][1];
-                originalRotor_2 += dataGet[i][2];
-                originalRotor_3 += dataGet[i][3];
-            }
-        }
         private void rotateRotorBackwards()
         {
             if (ringSettings[2] != rotorIncrements[2] || ringSettings[1] != rotorIncrements[1])
@@ -1382,6 +1426,10 @@ namespace EDP_Prelims_Enigma
                 {
                     if (ringSettings[0] != rotorIncrements[0] && rotorIncrements[1] == 0)
                     {
+                        if (rotorIncrements[0] == 0 && ringSettings[0] != rotorIncrements[0])
+                        {
+                            rotorIncrements[0] = control.Length;
+                        }
                         rotorIncrements[1] = control.Length;
                         rotorIncrements[0]--;
                         char lastChar1 = rotors[0][rotors[0].Length - 1];
@@ -1420,6 +1468,9 @@ namespace EDP_Prelims_Enigma
             //    label_rotor3.Content = copyRotor3;
             //    rotorIncrements[2]--;
             //}
+            slider_second.Value = rotorIncrements[2];
+            slider_min.Value = rotorIncrements[1];
+            slider_hour.Value = rotorIncrements[0];
             textbox_ring3.Text = rotorIncrements[2].ToString();
             textbox_ring1.Text = rotorIncrements[0].ToString();
             textbox_ring2.Text = rotorIncrements[1].ToString();
@@ -1460,7 +1511,14 @@ namespace EDP_Prelims_Enigma
                 textbox_ring1.Text = rotorIncrements[0].ToString();
                 label_rotor1.Content = copyRotor1;
             }
+            if (rotorIncrements[0] == rotors[0].Length)
+            {
+                rotorIncrements[0] = 0;             
+            }
 
+            slider_second.Value = rotorIncrements[2];
+            slider_min.Value = rotorIncrements[1];
+            slider_hour.Value = rotorIncrements[0];
             textbox_ring3.Text = rotorIncrements[2].ToString();
             textbox_ring2.Text = rotorIncrements[1].ToString();
             textbox_ring1.Text = rotorIncrements[0].ToString();
@@ -1499,29 +1557,8 @@ namespace EDP_Prelims_Enigma
             controlIndex = control.IndexOf(encryptedLetter);
             encryptedLetter = rotors[0][controlIndex];
             currentMirror += encryptedLetter;
-            lightPanel(letter, encryptedLetter);
+            lightPanel(letter.ToString(), encryptedLetter.ToString());
             label_mirror.Text = currentMirror;
-        }
-        private void setDefaultEnigma()
-        {
-            rotors[0] = originalRotor_1.ToString(); rotors[1] = originalRotor_2.ToString(); rotors[2] = originalRotor_3.ToString();
-            rotorLabels[0] = label_rotor1; rotorLabels[1] = label_rotor2; rotorLabels[2] = label_rotor3;
-            foreach (char a in control)
-            {
-                label_control.Content += a + "\t";
-            }
-            foreach (char a in rotors[0])
-            {
-                label_rotor1.Content += a + "\t";
-            }
-            foreach (char a in rotors[1])
-            {
-                label_rotor2.Content += a + "\t";
-            }
-            foreach (char a in rotors[2])
-            {
-                label_rotor3.Content += a + "\t";
-            }
         }
         private void setSettings()
         {
@@ -1545,7 +1582,7 @@ namespace EDP_Prelims_Enigma
             }
 
         }
-        private void button_activateRotor_Click(object sender, RoutedEventArgs e)
+        private void button_activateRotor_Click(object sender, RoutedEventArgs e) 
         {
             int ringValue;
             bool isRotorActive = false;
@@ -1573,14 +1610,29 @@ namespace EDP_Prelims_Enigma
                 }
             }
 
+            string setRotorsOnly = "";
+            if (sender is Button button)
+            {
+                setRotorsOnly = button.Name;
+            }
+
             if (isRotorActive)
             {
-                activateRotor = !activateRotor;
-                button_activateRotor.Content = "Rotor Active";
+                if(setRotorsOnly == "button_activateRotor")
+                {
+                    activateRotor = true;
+                    button_activateRotor.Content = "Rotor Active";
+                    elipse_rotorActive.Fill = Brushes.LightGreen;
+                }
                 button_activateRotor.IsEnabled = false;
+                button_lockRotors.IsEnabled = false;
                 textbox_ring1.IsEnabled = false;
                 textbox_ring2.IsEnabled = false;
                 textbox_ring3.IsEnabled = false;
+                slider_hour.IsEnabled = false;
+                slider_min.IsEnabled = false;
+                slider_second.IsEnabled = false;
+
                 setSettings();
             }
         }
@@ -1653,5 +1705,22 @@ namespace EDP_Prelims_Enigma
             }
 
         }
+        private void button_reset_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult ss = MessageBox.Show("Reset Enigma?", "Reset", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (ss == MessageBoxResult.Yes)
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+            }
+        }
+        private void slideRotor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            textbox_ring3.Text = slider_second.Value.ToString();
+            textbox_ring2.Text = slider_min.Value.ToString();
+            textbox_ring1.Text = slider_hour.Value.ToString();
+        }
+
     }
 }

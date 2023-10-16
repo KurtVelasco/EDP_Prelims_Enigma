@@ -7,21 +7,21 @@
         mc:Ignorable="d"
         Title="chooseCSV_New" Height="401" Width="474">
     <Grid>
-        <Button x:Name="button_browse" Content="Browse" Margin="28,26,0,0" Click="button_browse_Click" HorizontalAlignment="Left" Width="86" Height="23" VerticalAlignment="Top"/>
+        <Button x:Name="button_browse" Content="Browse CSV" Margin="28,26,0,0" Click="button_browse_Click" HorizontalAlignment="Left" Width="86" Height="23" VerticalAlignment="Top"/>
 
-        <ComboBox x:Name="cmb_ring1" HorizontalAlignment="Left" Margin="25,278,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cmb_ring_SelectionChanged" />
-        <ComboBox x:Name="cmb_ring2" HorizontalAlignment="Left" Margin="160,278,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cmb_ring_SelectionChanged" />
-        <ComboBox x:Name="cmb_ring3" HorizontalAlignment="Left" Margin="304,278,0,0" VerticalAlignment="Top" Width="120"  SelectionChanged="cmb_ring_SelectionChanged"/>
+        <ComboBox x:Name="cmb_ring1" IsEnabled="False" HorizontalAlignment="Left" Margin="25,278,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cmb_ring_SelectionChanged" />
+        <ComboBox x:Name="cmb_ring2" IsEnabled="False" HorizontalAlignment="Left" Margin="160,278,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cmb_ring_SelectionChanged" />
+        <ComboBox x:Name="cmb_ring3" IsEnabled="False" HorizontalAlignment="Left" Margin="304,278,0,0" VerticalAlignment="Top" Width="120"  SelectionChanged="cmb_ring_SelectionChanged"/>
         <Button x:Name="button_confirm" Content="Confirm Rotors " Background="LightGreen" HorizontalAlignment="Left" Height="25" Margin="160,309,0,0" VerticalAlignment="Top" Width="264" IsEnabled="False" Click="Confirm_Click"/>
         <Label Content="RING 1" HorizontalAlignment="Left" Margin="98,252,0,0" VerticalAlignment="Top"/>
         <Label Content="RING 2" HorizontalAlignment="Left" Margin="233,252,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.027,0.579"/>
         <Label Content="RING 3" HorizontalAlignment="Left" Margin="376,252,0,0" RenderTransformOrigin="4.027,0.579" Height="26" VerticalAlignment="Top"/>
-        <Button x:Name="button_default" Content="Use Sample Rotors" Background="LightPink" HorizontalAlignment="Left" Height="25" Margin="25,309,0,0" VerticalAlignment="Top" Width="120" IsEnabled="True" Click="Default_Click"/>
+        <Button x:Name="button_default" Content="Use Sample Rotors" Background="LightPink" HorizontalAlignment="Left" Height="25" Margin="25,309,0,0" VerticalAlignment="Top" Width="120" IsEnabled="True" Click="Default_Click" ToolTip="Use a predefined set of rotors"/>
         <Label x:Name="label_ringColumnCount" Content="Ring Columns: " HorizontalAlignment="Left" Margin="25,339,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label_ringCharCount" Content="Character Counts: " HorizontalAlignment="Left" Margin="160,339,0,0" VerticalAlignment="Top"/>
         <Label Content="Error Messages" HorizontalAlignment="Left" Margin="25,91,0,0" VerticalAlignment="Top" Width="189"/>
         <TextBox x:Name="textbox_errorMessage" IsReadOnly="True"  HorizontalAlignment="Left" Margin="28,117,0,0" TextWrapping="Wrap" Text="Currently no errors" VerticalAlignment="Top" Width="396" Height="130"/>
-        <Button x:Name="button_reset" Content="Choose another CSV" Margin="288,26,0,0"  HorizontalAlignment="Left" Width="135" Height="23" VerticalAlignment="Top" Click="button_reset_Click"/>
+        <Button x:Name="button_reset" Content="Reset Window" Margin="288,26,0,0"  HorizontalAlignment="Left" Width="135" Height="23" VerticalAlignment="Top" Click="button_reset_Click"/>
         <TextBox x:Name="label_filepath" BorderThickness="1" Text="File Path" IsReadOnly="True" HorizontalAlignment="Left" Margin="28,54,0,0" VerticalAlignment="Top" Width="395" Height="23"/>
     </Grid>
 </Window>

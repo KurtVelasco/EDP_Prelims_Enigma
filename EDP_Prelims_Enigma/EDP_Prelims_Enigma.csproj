@@ -58,7 +58,6 @@
     <Compile Include="chooseCSV_New.xaml.cs">
       <DependentUpon>chooseCSV_New.xaml</DependentUpon>
     </Compile>
-    <Compile Include="encryptLogic.cs" />
     <Compile Include="universalData.cs" />
     <Page Include="chooseCSV.xaml">
       <SubType>Designer</SubType>
@@ -109,9 +108,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Image1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
